@@ -1,93 +1,148 @@
-# Meadows Oil and Gas - Website Redesign Plan & Architecture
+# Meadows Oil & Gas — Website Redesign
 
-## 1. Information Architecture (Sitemap)
+## Project Overview
+This is a professional website redesign for **Meadows Oil & Gas Corporation**, a land brokerage and energy services company based in Edmond, Oklahoma. Founded in 2009 by Zach Meadows. Services include leasehold acquisitions, title opinions, right-of-way, wind leasing, and GIS mapping across Oklahoma, Kansas, Texas, and beyond.
 
-To ensure a seamless user experience, the website should be organized into clear, intuitive sections. Here is the recommended sitemap:
-
-* **Home:** Overview of Meadows Oil and Gas, highlighting expertise in both traditional energy and renewables, with a high-quality digital imagery hero section.
-* **About Us:**
-    * **Company History & Oil History:** Historical context of the industry and the company's roots.
-    * **Our Reach (Work Locations):** Details on the Oklahoma City and Bakersfield, CA offices, plus capabilities for domestic and foreign projects.
-    * **Professional Affiliations:** Logos and links to AAPL and OCAPL.
-* **Services:**
-    * **Core Brokerage & Land Services:**
-        * Leasehold Acquisitions
-        * Mineral & Leasehold Ownerships
-        * Title Services (Opinions & Curative work)
-        * Right-of-Ways
-        * Wind Leasing (Highlighting renewable energy transition)
-    * **Technical & Mapping Services:**
-        * Mapping & Seismic Mapping
-        * Digital Imagery
-* **Projects & Media:**
-    * **Photo Gallery:** Visual documentation of field operations and projects.
-* **Contact Us:** Inquiry forms, office addresses, and routing to specific departments.
+**GitHub:** https://github.com/jacobhackbirth/meadows-oil-gas-redesign  
+**Owner:** Jacob (jacobhackbirth63@gmail.com)  
+**Local dev:** Run `npm run dev` from the project folder, then open http://localhost:3000
 
 ---
 
-## 2. Feature & Content Integration Strategy
-
-### Core Brokerage & Land Services
-* **Design Approach:** Use accordion-style FAQs or dedicated landing pages for each service to improve SEO.
-* **Trust Signals:** Highlight "Title Opinions" and "Title Curative work" with case studies or brief success metrics.
-* **Renewables Pivot:** Give "Wind Leasing" a distinct visual theme (e.g., greener accents) to separate it from traditional oil and gas, capturing the renewable energy market.
-
-### Technical & Mapping Services
-* **Interactive Elements:** Incorporate interactive map embeds (using Mapbox or Google Maps API) to showcase capabilities in Seismic Mapping.
-* **Visuals:** Utilize actual high-resolution digital imagery from past projects to demonstrate technical proficiency.
-
-### Company Resources & History
-* **Timeline UI:** Use an interactive timeline for the "Oil History" section.
-* **Gallery:** Implement a responsive masonry grid or lightbox gallery for the Photo Gallery.
-
-### Affiliations
-* **Footer/Trust Banner:** Place the AAPL and OCAPL logos in the footer of every page, as well as on the About page, to establish immediate industry credibility.
+## Tech Stack
+- **Framework:** Next.js 16 (App Router, Turbopack)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4 (utility classes + inline styles with CSS variables)
+- **Fonts:** Oswald (display/headings) + DM Sans (body) via next/font/google
+- **Forms:** react-hook-form + zod validation
+- **Maps:** react-simple-maps (service area), Mapbox GL JS (location map)
+- **Hosting:** Vercel (intended)
+- **Forms backend:** Formspree
 
 ---
 
-## 3. Recommended Web App Architecture
+## Design System
 
-Given the professional nature of Meadows Oil and Gas, the site needs to be fast, highly secure, SEO-optimized, and easy for non-technical staff to update.
+### Brand Colors (CSS variables in globals.css)
+- `--color-brand-gold: #c8921a` — primary accent, CTAs, borders
+- `--color-brand-navy: #0a0a0a` — dark backgrounds
+- `--color-brand-green: #2d7d3a` — wind/renewable energy accent
+- `--color-brand-gray: #6b7280` — body text
+- Black `#000` / `#111` for section backgrounds
+- White / `#f5f5f5` for light sections
 
-### The JAMstack Approach (Modern, Fast, Secure)
+### Typography
+- Headings: `font-family: var(--font-display)` — Oswald, uppercase, letter-spacing
+- Body: `font-family: var(--font-sans)` — DM Sans, normal case
 
-**1. Frontend (User Interface): Next.js (React)**
-* *Why:* Next.js provides Server-Side Rendering (SSR) and Static Site Generation (SSG). This ensures the website loads blazingly fast and is highly optimized for Search Engines (SEO), which is critical for B2B discovery.
-* *Styling:* Tailwind CSS for clean, professional, and highly responsive corporate design.
+### Reusable CSS Classes
+- `.section-padding` — consistent vertical padding
+- `.container-max` — max-width 80rem, centered
+- `.section-label` — small gold uppercase label above headings
+- `.section-title` — large display heading
+- `.btn-primary` / `.btn-outline` — button styles
+- `.reveal-up` + `.is-visible` — scroll reveal animation
+- `.hero-animate` — hero entry animation
 
-**2. Backend / Content Management System (CMS): Sanity.io or Strapi**
-* *Why:* A "Headless CMS" separates the content from the code. Meadows' administrative team can easily log in to a dashboard to upload new images to the Photo Gallery, update office locations, or add new services without needing a web developer.
-
-**3. Hosting & Deployment: Vercel**
-* *Why:* Vercel seamlessly integrates with Next.js, providing automatic scaling, global content delivery (CDN), and high uptime. 
-
-**4. Specialized Integrations:**
-* **Maps:** Mapbox GL JS for rendering high-performance, custom-styled geographical maps to showcase the "Work Locations" and "Technical & Mapping Services".
-* **Forms:** Formspree or SendGrid for handling contact and land service inquiry forms securely.
+### Design Patterns
+- Dark black/charcoal headers with gold radial gradient glow
+- Light gray `#f5f5f5` or white for content sections
+- Gold `border-top: 3px solid var(--color-brand-gold)` on cards
+- `border-left: 3px solid var(--color-brand-gold)` on accent panels
+- All headings uppercase with `letter-spacing: 0.02em`
+- Rounded pills (`border-radius: 9999px`) only on CTA buttons
+- No rounded corners on cards/panels
 
 ---
 
-## 4. Claude Code Skill Configuration & Development Workflow
+## Project Structure
 
-To efficiently build this Next.js/Vercel architecture, utilize the following Claude Code skills and plugins, categorized by development phase. This specific stack leverages custom user profiles alongside core Vercel and Agent plugins to ensure high-quality execution.
+### App Pages (`app/`)
+- `/` — Homepage
+- `/about` — About page (history, service area map, affiliations, process)
+- `/services` — Services overview (core, technical, wind, FAQ)
+- `/contact` — Contact form + office info
+- `/gallery` — Photo gallery with lightbox
+- `/faq` — Full FAQ with 5 sections, 20 questions
+- `/careers` — Careers page
+- `/privacy` — Privacy policy
+- `/projects` — Projects page
+- `/resources` — Resources page
 
-### Phase 1: Architecture & Planning
-* **`superpowers:writing-plans`**: Execute this first. Feed this `.md` file to Claude Code to generate a step-by-step implementation roadmap and feature branch strategy.
-* **`vercel:nextjs`**: Initializes the App Router boilerplate, ensuring the project structure adheres to the latest Vercel standards for routing and server components.
-* **`agenthub:init`** & **`agenthub:plan`**: Use these to structure the larger tasks, such as separating the Technical Mapping integration from the general UI component buildout.
+### Components Built
+**Layout:**
+- `components/layout/Navbar.tsx` — fixed header, mobile slide menu, active link highlighting
+- `components/layout/Footer.tsx` — nav links, contact info, AAPL/OCAPL affiliations
 
-### Phase 2: Design System & UI Components
-* **`brandkit`**: Enforce the Meadows Oil and Gas color palette and typography. Ensure consistent branding across traditional oil services and renewable wind energy sections.
-* **`high-end-visual-design` & `minimalist-ui`**: Activate these to guarantee a modern, clean corporate aesthetic. They will help avoid clutter, replacing standard layouts with a polished interface that allows the high-resolution digital imagery to stand out.
-* **`vercel:shadcn`**: Essential for rapidly building accessible, highly functional components. Use this for the Service Accordions, interactive tabs for Work Locations, and image carousels for the Photo Gallery.
-* **`design-taste-frontend`**: Ensures the React components are built with a professional finish, implementing smooth transitions and proper responsive padding across mobile and desktop.
+**UI:**
+- `components/ui/BackToTop.tsx` — floating scroll-to-top button (desktop only)
+- `components/ui/MobileStickyBar.tsx` — bottom sticky bar on mobile (Call + Contact)
+- `components/ui/ScrollReveal.tsx` — intersection observer wrapper for .reveal-up
+- `components/ui/AnimatedCounter.tsx` — animated number counter on scroll
+- `components/ui/PageHeader.tsx` — reusable dark page header
+- `components/ui/accordion.tsx` — details/summary accordion component
 
-### Phase 3: Core Logic & Performance Optimization
-* **`vercel:react-best-practices`**: Enforces strict React paradigms, proper hook usage, and clean state management for interactive elements (like the Mapbox UI).
-* **`vercel:routing-middleware`**: Crucial for setting up localized routing for the Oklahoma City and Bakersfield offices, optimizing SEO paths, and protecting any headless CMS webhook routes.
-* **`vercel:next-cache-components`**: Optimizes the loading of heavy assets. This is particularly vital for the high-resolution Digital Imagery and Seismic Mapping sections, ensuring fast load times and preventing layout shifts.
+**Home page sections:**
+- `components/home/HeroSection.tsx` — full-screen dark hero with animated text
+- `components/home/StatsBar.tsx` — stats bar (15+ years, 3 states, etc.)
+- `components/home/WhySection.tsx` — why choose us with checklist
+- `components/home/ServicesPreview.tsx` — 5-service card grid
+- `components/home/ClientTypesSection.tsx` — 6 client types on black background
+- `components/home/ProcessSection.tsx` — 4-step process
+- `components/home/TestimonialsSection.tsx` — 3 testimonial cards
+- `components/home/LinkedInStrip.tsx` — LinkedIn follow strip
+- `components/home/CTASection.tsx` — final call-to-action section
 
-### Phase 4: Execution & Debugging
-* **`full-output-enforcement`**: A critical skill to ensure Claude Code does not truncate long files, especially when generating the comprehensive Oil History timeline, compiling the full sitemap navigation, or writing intricate map integration code.
-* **`superpowers:systematic-debugging`**: Keep this active during the API and CMS integration phases to methodically track down and resolve hydration errors or data-fetching issues.
-* **`superpowers:finishing-a-development-branch`**: Use this to cleanly wrap up isolated features (like completing the `Title Services` module) before merging and moving on to the next task.
+**About:**
+- `components/about/Timeline.tsx` — company history timeline (takes `events` prop)
+- `components/about/ServiceAreaMap.tsx` — react-simple-maps US map (OK/KS/TX highlighted)
+
+**Contact:**
+- `components/contact/ContactForm.tsx` — react-hook-form + zod, posts to Formspree
+
+**Services:**
+- `components/services/ServiceAccordion.tsx` — FAQ accordion (takes `services` prop)
+- `components/services/ServicesNav.tsx` — sticky anchor nav strip
+- `components/services/TechnicalServices.tsx` — GIS & mapping section
+- `components/services/WindLeasingBanner.tsx` — wind leasing section with green accent
+
+**Gallery:**
+- `components/gallery/GalleryClient.tsx` — masonry grid with lightbox, keyboard nav
+
+---
+
+## Environment Variables
+File: `.env.local` (not committed to GitHub — create from `.env.local.example`)
+
+```
+NEXT_PUBLIC_MAPBOX_TOKEN=    # from mapbox.com — needed for location map
+NEXT_PUBLIC_SANITY_PROJECT_ID=  # from sanity.io — needed for CMS
+NEXT_PUBLIC_SANITY_DATASET=production
+FORMSPREE_ENDPOINT=          # from formspree.io — needed for contact form
+```
+
+Currently using placeholder values locally. The contact form and map won't work until real keys are added.
+
+---
+
+## What's Still Needed
+- Real photos for `public/images/` (gallery is currently placeholder cards)
+- Real Mapbox token for the service area / location maps
+- Real Formspree endpoint for contact form submissions
+- Sub-pages: `/about/history`, `/about/reach`, `/about/affiliations`, `/about/process`
+- Sub-pages: `/services/brokerage`, `/services/technical`, `/services/wind`
+- Logo image at `public/images/logo.png`
+
+---
+
+## Company Info
+- **Name:** Meadows Oil & Gas Corporation
+- **Founder:** Zach Meadows
+- **Address:** 609 S. Kelly Ave., Suite G3, Edmond, OK 73003
+- **Phone:** 405.285.8500
+- **Fax:** 405.285.8598
+- **Email:** info@meadowsoilandgas.com
+- **LinkedIn:** https://www.linkedin.com/company/meadowsoil
+- **Founded:** 2009
+- **Affiliations:** AAPL (landman.org), OCAPL (ocapl.org)
+- **Primary states:** Oklahoma, Kansas, Texas
