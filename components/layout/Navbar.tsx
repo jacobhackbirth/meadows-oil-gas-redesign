@@ -41,8 +41,41 @@ export default function Navbar() {
       }}
     >
       <div className="container-max px-6 sm:px-8" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '4rem' }}>
+        <div className="hidden md:flex items-center gap-8">
+          <Link
+            href="/"
+            style={{
+              fontFamily: 'var(--font-display)', fontSize: '1.05rem', fontWeight: 700,
+              letterSpacing: '0.1em', textTransform: 'uppercase', color: 'white', textDecoration: 'none',
+            }}
+          >
+            Meadows <span style={{ color: 'var(--color-brand-gold)' }}>Oil &amp; Gas</span>
+          </Link>
+
+          <nav className="flex items-center gap-7">
+            {links.map(({ label, href }) => (
+              <Link
+                key={href}
+                href={href}
+                style={{
+                  fontFamily: 'var(--font-display)', fontSize: '0.65rem', letterSpacing: '0.15em',
+                  textTransform: 'uppercase', textDecoration: 'none',
+                  color: pathname.startsWith(href) ? 'var(--color-brand-gold)' : 'rgba(255,255,255,0.7)',
+                  transition: 'color 0.2s',
+                  borderBottom: pathname.startsWith(href) ? '1px solid var(--color-brand-gold)' : '1px solid transparent',
+                  paddingBottom: '2px',
+                }}
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        {/* Mobile: logo on left */}
         <Link
           href="/"
+          className="md:hidden"
           style={{
             fontFamily: 'var(--font-display)', fontSize: '1.05rem', fontWeight: 700,
             letterSpacing: '0.1em', textTransform: 'uppercase', color: 'white', textDecoration: 'none',
@@ -51,23 +84,7 @@ export default function Navbar() {
           Meadows <span style={{ color: 'var(--color-brand-gold)' }}>Oil &amp; Gas</span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-7">
-          {links.map(({ label, href }) => (
-            <Link
-              key={href}
-              href={href}
-              style={{
-                fontFamily: 'var(--font-display)', fontSize: '0.65rem', letterSpacing: '0.15em',
-                textTransform: 'uppercase', textDecoration: 'none',
-                color: pathname.startsWith(href) ? 'var(--color-brand-gold)' : 'rgba(255,255,255,0.7)',
-                transition: 'color 0.2s',
-                borderBottom: pathname.startsWith(href) ? '1px solid var(--color-brand-gold)' : '1px solid transparent',
-                paddingBottom: '2px',
-              }}
-            >
-              {label}
-            </Link>
-          ))}
+        <div className="hidden md:flex items-center">
           <Link
             href="/contact"
             style={{
@@ -78,7 +95,7 @@ export default function Navbar() {
           >
             Contact Us
           </Link>
-        </nav>
+        </div>
 
         <button
           className="md:hidden"
