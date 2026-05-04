@@ -35,45 +35,37 @@ const services = [
 
 export default function ServicesPreview() {
   return (
-    <section className="section-padding" style={{ backgroundColor: '#f5f5f5' }}>
+    <section className="section-padding" style={{ backgroundColor: '#000' }}>
       <div className="container-max px-6 sm:px-8">
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
-          <div>
-            <span className="section-label">Our Services</span>
-            <h2 className="section-title" style={{ color: '#000' }}>What We Do</h2>
-          </div>
-          <Link
-            href="/services"
-            style={{ fontFamily: 'var(--font-display)', fontSize: '0.6rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--color-brand-gold)', textDecoration: 'none', whiteSpace: 'nowrap' }}
-          >
-            All Services →
-          </Link>
+        <div className="mb-12">
+          <span className="section-label" style={{ color: 'var(--color-brand-gold)' }}>Our Services</span>
+          <h2 className="section-title text-white">What We Do</h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {services.map(({ title, body, tags, href }) => (
             <Link key={title} href={href} style={{ textDecoration: 'none', display: 'block' }}>
               <div
-                className="h-full p-8 flex flex-col"
+                className="h-full flex flex-col"
                 style={{
-                  backgroundColor: '#fff',
-                  borderTop: '3px solid var(--color-brand-gold)',
-                  boxShadow: '0 2px 12px rgba(0,0,0,0.05)',
-                  transition: 'box-shadow 0.2s, transform 0.2s',
+                  backgroundColor: '#111',
+                  borderRadius: '10px',
+                  padding: '2rem',
+                  transition: 'transform 0.2s, box-shadow 0.2s',
+                  border: '1px solid rgba(255,255,255,0.04)',
                 }}
               >
-                <h3
-                  style={{
-                    fontFamily: 'var(--font-display)', fontSize: '0.85rem', letterSpacing: '0.08em',
-                    textTransform: 'uppercase', color: 'var(--color-brand-gold)', margin: '0 0 0.75rem',
-                  }}
-                >
+                <h3 style={{
+                  fontFamily: 'var(--font-display)', fontSize: '0.78rem', letterSpacing: '0.1em',
+                  textTransform: 'uppercase', color: 'var(--color-brand-gold)', margin: '0 0 0.75rem',
+                }}>
                   {title}
                 </h3>
-                <p className="text-sm leading-relaxed flex-1" style={{ color: 'var(--color-brand-gray)', fontFamily: 'var(--font-sans)', textTransform: 'none', letterSpacing: 'normal' }}>
+                <div style={{ width: '2rem', height: '2px', backgroundColor: 'var(--color-brand-gold)', marginBottom: '1rem', opacity: 0.7 }} />
+                <p className="text-sm leading-relaxed flex-1" style={{ color: 'rgba(200,200,200,0.75)', fontFamily: 'var(--font-sans)', textTransform: 'none', letterSpacing: 'normal' }}>
                   {body}
                 </p>
-                <p className="mt-5 text-xs leading-relaxed" style={{ color: 'rgba(0,0,0,0.35)', fontFamily: 'var(--font-sans)', textTransform: 'none', letterSpacing: 'normal' }}>
+                <p className="mt-5 text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.2)', fontFamily: 'var(--font-sans)', textTransform: 'none', letterSpacing: 'normal' }}>
                   {tags}
                 </p>
               </div>

@@ -9,56 +9,68 @@ const steps = [
 
 export default function ProcessSection() {
   return (
-    <section className="section-padding" style={{ backgroundColor: 'var(--color-brand-navy)', borderTop: '1px solid rgba(255,255,255,0.04)' }}>
+    <section className="section-padding" style={{ backgroundColor: '#000' }}>
       <div className="container-max px-6 sm:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12 items-end">
-          <div>
-            <span className="section-label" style={{ color: 'var(--color-brand-gold)' }}>Our Process</span>
-            <h2
-              className="leading-none text-white"
-              style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 4vw, 3rem)', textTransform: 'uppercase', letterSpacing: '0.02em' }}
-            >
-              How We Work
-            </h2>
-          </div>
+        <div className="mb-12">
+          <span className="section-label" style={{ color: 'var(--color-brand-gold)' }}>Our Process</span>
+          <h2
+            className="text-white leading-none"
+            style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.5rem, 6vw, 5rem)', textTransform: 'uppercase', letterSpacing: '0.02em', fontWeight: 700 }}
+          >
+            How We Work
+          </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
-          {steps.map(({ num, title, body }) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+          {steps.map(({ num, title, body }, i) => (
             <div
               key={num}
-              className="p-6"
-              style={{ backgroundColor: 'rgba(255,255,255,0.03)', borderTop: '2px solid var(--color-brand-gold)', border: '1px solid rgba(255,255,255,0.06)', borderTopWidth: '2px', borderTopColor: 'var(--color-brand-gold)' }}
+              style={{
+                padding: '2.5rem 2rem 2rem',
+                borderRight: i < steps.length - 1 ? '1px solid rgba(200,146,26,0.2)' : 'none',
+              }}
             >
-              <span style={{ display: 'block', fontFamily: 'var(--font-display)', fontSize: '0.55rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(200,146,26,0.5)', marginBottom: '0.75rem' }}>
-                Step {num}
-              </span>
-              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '0.85rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'white', marginBottom: '0.75rem' }}>{title}</h3>
-              <p className="text-sm leading-relaxed" style={{ color: 'rgba(156,163,175,1)', fontFamily: 'var(--font-sans)', textTransform: 'none', letterSpacing: 'normal' }}>{body}</p>
+              <div style={{
+                fontFamily: 'var(--font-display)', fontSize: '5rem', fontWeight: 700,
+                color: 'rgba(200,146,26,0.18)', lineHeight: 1, marginBottom: '1.5rem',
+                letterSpacing: '-0.02em',
+              }}>
+                {num}
+              </div>
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '0.8rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'white', marginBottom: '0.75rem' }}>
+                {title}
+              </h3>
+              <p className="text-sm leading-relaxed" style={{ color: 'rgba(156,163,175,1)', fontFamily: 'var(--font-sans)', textTransform: 'none', letterSpacing: 'normal' }}>
+                {body}
+              </p>
             </div>
           ))}
         </div>
 
-        <div className="flex flex-wrap gap-6">
+        <div className="flex flex-wrap items-center gap-6 mt-10" style={{ borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '2rem' }}>
           <Link
             href="/contact"
             style={{
-              fontFamily: 'var(--font-display)', fontSize: '0.6rem', letterSpacing: '0.15em',
-              textTransform: 'uppercase', color: 'var(--color-brand-gold)', textDecoration: 'none',
-              display: 'inline-flex', alignItems: 'center', gap: '0.25rem',
+              display: 'inline-flex', alignItems: 'center', gap: 0,
+              backgroundColor: 'var(--color-brand-gold)', borderRadius: '9999px',
+              textDecoration: 'none', overflow: 'hidden',
             }}
           >
-            Start a Project <span>→</span>
+            <span style={{ padding: '0.85rem 1.5rem', fontFamily: 'var(--font-display)', fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#000' }}>
+              Start a Project
+            </span>
+            <span style={{ width: '2.75rem', height: '2.75rem', backgroundColor: 'rgba(0,0,0,0.18)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#000', fontWeight: 700, fontSize: '1rem', flexShrink: 0 }}>
+              →
+            </span>
           </Link>
           <Link
             href="/about/process"
             style={{
-              fontFamily: 'var(--font-display)', fontSize: '0.6rem', letterSpacing: '0.15em',
-              textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', textDecoration: 'none',
-              display: 'inline-flex', alignItems: 'center', gap: '0.25rem',
+              fontFamily: 'var(--font-display)', fontSize: '0.62rem', letterSpacing: '0.15em',
+              textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', textDecoration: 'none',
             }}
           >
-            See Full Process <span>→</span>
+            See Full Process →
           </Link>
         </div>
       </div>

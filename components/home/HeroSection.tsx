@@ -4,98 +4,115 @@ export default function HeroSection() {
   return (
     <section
       style={{
-        position: 'relative', minHeight: '100vh', display: 'flex', alignItems: 'center',
-        background: `
-          radial-gradient(ellipse 120% 80% at 70% 50%, rgba(200,146,26,0.06) 0%, transparent 60%),
-          repeating-linear-gradient(
-            -45deg,
-            transparent,
-            transparent 40px,
-            rgba(255,255,255,0.012) 40px,
-            rgba(255,255,255,0.012) 41px
-          ),
-          #050505
-        `,
+        position: 'relative',
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        backgroundImage: 'url("/images/hero.jpg")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
         overflow: 'hidden',
       }}
     >
-      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, pointerEvents: 'none' }}>
-        <div style={{ position: 'absolute', top: '20%', left: 0, right: 0, height: '1px', backgroundColor: 'rgba(200,146,26,0.05)' }} />
-        <div style={{ position: 'absolute', top: '80%', left: 0, right: 0, height: '1px', backgroundColor: 'rgba(200,146,26,0.05)' }} />
-        <div style={{ position: 'absolute', left: '60%', top: 0, bottom: 0, width: '1px', backgroundColor: 'rgba(200,146,26,0.04)' }} />
-      </div>
+      {/* Gradient overlays */}
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(5,5,5,0.97) 0%, rgba(5,5,5,0.75) 55%, rgba(5,5,5,0.1) 100%)' }} />
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(5,5,5,0.75) 0%, rgba(0,0,0,0) 50%)' }} />
 
-      <div className="container-max px-6 sm:px-8 w-full" style={{ paddingTop: '8rem', paddingBottom: '5rem' }}>
-        <div className="max-w-3xl">
-          <span
-            className="hero-animate section-label"
-            style={{ animationDelay: '0.1s', color: 'var(--color-brand-gold)' }}
+      <div className="container-max px-6 sm:px-8 w-full" style={{ position: 'relative', zIndex: 1, paddingTop: '9rem', paddingBottom: '6rem' }}>
+        <div className="max-w-2xl">
+
+          {/* Pill label */}
+          <div
+            className="hero-animate"
+            style={{
+              display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+              backgroundColor: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)',
+              borderRadius: '9999px', padding: '0.35rem 0.875rem', marginBottom: '1.75rem',
+              animationDelay: '0.1s',
+            }}
           >
-            Oklahoma Land Services
-          </span>
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--color-brand-gold)', display: 'block', flexShrink: 0 }} />
+            <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.58rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.8)' }}>
+              Oklahoma Land Services
+            </span>
+          </div>
 
           <h1
-            className="hero-animate text-white leading-none mt-3"
+            className="hero-animate text-white leading-none"
             style={{
               fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(3rem, 8vw, 7rem)',
+              fontSize: 'clamp(3.5rem, 9vw, 8rem)',
               textTransform: 'uppercase',
               letterSpacing: '0.02em',
+              fontWeight: 700,
               animationDelay: '0.2s',
+              lineHeight: 0.95,
             }}
           >
             <span style={{ display: 'block' }}>Trusted</span>
-            <span style={{ display: 'block', color: 'var(--color-brand-gold)', fontWeight: 300 }}>Land &amp;</span>
-            <span style={{ display: 'block' }}>Title Services</span>
+            <span style={{ display: 'block' }}>Land &amp;</span>
+            <span style={{ display: 'block', color: 'var(--color-brand-gold)' }}>Title Services</span>
           </h1>
 
           <p
-            className="hero-animate mt-5"
+            className="hero-animate mt-6"
             style={{
-              color: 'var(--color-brand-gold)',
-              fontFamily: 'var(--font-display)',
-              fontSize: '0.75rem',
-              letterSpacing: '0.15em',
-              textTransform: 'uppercase',
-              animationDelay: '0.35s',
+              color: 'white', fontFamily: 'var(--font-display)',
+              fontSize: '0.72rem', letterSpacing: '0.15em', textTransform: 'uppercase',
+              fontWeight: 600, animationDelay: '0.32s',
             }}
           >
             Serving Operators Since 2009
           </p>
 
           <p
-            className="hero-animate mt-4 max-w-xl leading-relaxed"
+            className="hero-animate mt-3 max-w-md leading-relaxed"
             style={{
-              color: 'rgba(156,163,175,1)', fontFamily: 'var(--font-sans)',
-              fontSize: 'clamp(0.95rem, 2vw, 1.1rem)',
-              textTransform: 'none', letterSpacing: 'normal',
+              color: 'rgba(200,200,200,0.85)', fontFamily: 'var(--font-sans)',
+              fontSize: '1rem', textTransform: 'none', letterSpacing: 'normal',
               animationDelay: '0.4s',
             }}
           >
             Precise, dependable land and title solutions that empower our clients to move with confidence.
           </p>
 
-          <div className="hero-animate flex flex-wrap gap-4 mt-9" style={{ animationDelay: '0.55s' }}>
+          <div className="hero-animate flex flex-wrap gap-4 mt-9" style={{ animationDelay: '0.52s' }}>
+            {/* Gold pill button with arrow circle */}
             <Link
               href="/services"
               style={{
-                fontFamily: 'var(--font-display)', fontSize: '0.75rem', fontWeight: 700,
-                letterSpacing: '0.15em', textTransform: 'uppercase',
-                backgroundColor: 'var(--color-brand-gold)', color: '#000',
-                padding: '1rem 2rem', borderRadius: '9999px', textDecoration: 'none',
-                display: 'inline-flex', alignItems: 'center', gap: '0.25rem',
+                display: 'inline-flex', alignItems: 'center', gap: 0,
+                backgroundColor: 'var(--color-brand-gold)', borderRadius: '9999px',
+                textDecoration: 'none', overflow: 'hidden',
               }}
             >
-              Our Services <span>→</span>
+              <span style={{
+                padding: '0.9rem 1.5rem',
+                fontFamily: 'var(--font-display)', fontSize: '0.72rem', fontWeight: 700,
+                letterSpacing: '0.12em', textTransform: 'uppercase', color: '#000',
+              }}>
+                Our Services
+              </span>
+              <span style={{
+                width: '3rem', height: '3rem', backgroundColor: 'rgba(0,0,0,0.18)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                color: '#000', fontWeight: 700, fontSize: '1.1rem', flexShrink: 0,
+              }}>
+                →
+              </span>
             </Link>
+
+            {/* Outline pill button */}
             <Link
               href="/contact"
               style={{
-                fontFamily: 'var(--font-display)', fontSize: '0.75rem', fontWeight: 600,
-                letterSpacing: '0.15em', textTransform: 'uppercase',
-                backgroundColor: 'transparent', color: 'white',
-                padding: '1rem 2rem', border: '1.5px solid rgba(255,255,255,0.25)',
+                display: 'inline-flex', alignItems: 'center',
+                padding: '0.9rem 1.75rem',
+                backgroundColor: 'rgba(255,255,255,0.08)',
+                border: '1px solid rgba(255,255,255,0.3)',
                 borderRadius: '9999px', textDecoration: 'none',
+                fontFamily: 'var(--font-display)', fontSize: '0.72rem', fontWeight: 600,
+                letterSpacing: '0.12em', textTransform: 'uppercase', color: 'white',
               }}
             >
               Contact Us
@@ -104,10 +121,12 @@ export default function HeroSection() {
         </div>
       </div>
 
+      {/* Scroll indicator */}
       <div
         style={{
           position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)',
           display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px',
+          zIndex: 1,
         }}
       >
         <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.5rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)' }}>
