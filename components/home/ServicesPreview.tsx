@@ -1,41 +1,35 @@
 import Link from 'next/link'
-import { FileText, MapPin, Wind, Map } from 'lucide-react'
 
 const services = [
   {
-    icon: FileText,
-    number: '01',
-    title: 'Leasing & Acquisitions',
-    body: 'Expert leasehold acquisition across Oklahoma, Kansas, Texas, and beyond. Ownership reporting, due diligence, and regulatory support built for speed.',
-    href: '/services#core-services',
+    title: 'Leasehold Acquisitions',
+    body: 'Securing oil and gas leases across Oklahoma mineral estates. We handle negotiation, drafting, and execution.',
+    tags: 'Bonus negotiations · Paid-up leases · Ratifications',
+    href: '/services',
   },
   {
-    icon: FileText,
-    number: '02',
+    title: 'Mineral & Leasehold Ownership',
+    body: 'Comprehensive ownership reports tracing mineral and leasehold interests through chain of title.',
+    tags: 'Run sheets · Division order title opinions · Ownership schedules',
+    href: '/services',
+  },
+  {
     title: 'Title Services',
-    body: 'Title opinions, curative work, and ownership reporting delivered by career landmen. Accurate, fast, and referenced by major operators.',
-    href: '/services#core-services',
+    body: 'Title opinions and curative work founded on rigorous courthouse research and abstract review.',
+    tags: 'Drilling title opinions · Curative drafting · Title examination',
+    href: '/services',
   },
   {
-    icon: MapPin,
-    number: '03',
-    title: 'Right-of-Way',
-    body: 'Full-service ROW acquisition — easements, surface agreements, and negotiations handled by experienced professionals who know the terrain.',
-    href: '/services#core-services',
+    title: 'Right-of-Ways',
+    body: 'Pipeline, road, and utility right-of-way acquisition across Oklahoma surface estates.',
+    tags: 'Easement negotiation · Damage settlements · ROW agent services',
+    href: '/services',
   },
   {
-    icon: Wind,
-    number: '04',
     title: 'Wind Leasing',
-    body: 'Dedicated wind leasing practice serving landowners, developers, and operators across the central plains renewable energy transition.',
-    href: '/services#wind',
-  },
-  {
-    icon: Map,
-    number: '05',
-    title: 'GIS & Mapping',
-    body: 'High-accuracy GIS mapping and seismic support. Custom shapefiles, ownership maps, and digital deliverables for every project type.',
-    href: '/services#technical',
+    body: 'Wind and renewable energy lease acquisition and landowner negotiation for wind project development.',
+    tags: 'Wind lease negotiation · Landowner outreach · Project area consolidation',
+    href: '/services',
   },
 ]
 
@@ -45,8 +39,8 @@ export default function ServicesPreview() {
       <div className="container-max px-6 sm:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
           <div>
-            <span className="section-label">What We Do</span>
-            <h2 className="section-title" style={{ color: '#000' }}>Core Services</h2>
+            <span className="section-label">Our Services</span>
+            <h2 className="section-title" style={{ color: '#000' }}>What We Do</h2>
           </div>
           <Link
             href="/services"
@@ -57,12 +51,8 @@ export default function ServicesPreview() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {services.map(({ icon: Icon, number, title, body, href }) => (
-            <Link
-              key={title}
-              href={href}
-              style={{ textDecoration: 'none', display: 'block' }}
-            >
+          {services.map(({ title, body, tags, href }) => (
+            <Link key={title} href={href} style={{ textDecoration: 'none', display: 'block' }}>
               <div
                 className="h-full p-8 flex flex-col"
                 style={{
@@ -72,13 +62,20 @@ export default function ServicesPreview() {
                   transition: 'box-shadow 0.2s, transform 0.2s',
                 }}
               >
-                <span style={{ fontFamily: 'var(--font-display)', fontSize: '3rem', color: 'rgba(0,0,0,0.06)', lineHeight: 1, marginBottom: '0.75rem' }}>{number}</span>
-                <div className="flex items-center gap-2 mb-3">
-                  <Icon size={16} style={{ color: 'var(--color-brand-gold)' }} />
-                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '0.85rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#000', margin: 0 }}>{title}</h3>
-                </div>
-                <p className="text-sm leading-relaxed flex-1" style={{ color: 'var(--color-brand-gray)', fontFamily: 'var(--font-sans)', textTransform: 'none', letterSpacing: 'normal' }}>{body}</p>
-                <span className="mt-5 text-xs tracking-widest uppercase" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-brand-gold)' }}>Learn More →</span>
+                <h3
+                  style={{
+                    fontFamily: 'var(--font-display)', fontSize: '0.85rem', letterSpacing: '0.08em',
+                    textTransform: 'uppercase', color: 'var(--color-brand-gold)', margin: '0 0 0.75rem',
+                  }}
+                >
+                  {title}
+                </h3>
+                <p className="text-sm leading-relaxed flex-1" style={{ color: 'var(--color-brand-gray)', fontFamily: 'var(--font-sans)', textTransform: 'none', letterSpacing: 'normal' }}>
+                  {body}
+                </p>
+                <p className="mt-5 text-xs leading-relaxed" style={{ color: 'rgba(0,0,0,0.35)', fontFamily: 'var(--font-sans)', textTransform: 'none', letterSpacing: 'normal' }}>
+                  {tags}
+                </p>
               </div>
             </Link>
           ))}

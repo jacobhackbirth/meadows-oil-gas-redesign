@@ -1,10 +1,8 @@
-import AnimatedCounter from '@/components/ui/AnimatedCounter'
-
 const stats = [
-  { value: 15, suffix: '+', label: 'Years in Business' },
-  { value: 3, suffix: '', label: 'Primary States' },
-  { value: 10, suffix: '+', label: 'Avg. Years Experience' },
-  { value: 2, suffix: '', label: 'Professional Affiliations' },
+  { value: '2009', label: 'Established' },
+  { value: '10+', label: 'Yrs Per Landman' },
+  { value: 'OK · KS · TX', label: '& Beyond' },
+  { value: '3', label: 'Core Services' },
 ]
 
 export default function StatsBar() {
@@ -12,7 +10,7 @@ export default function StatsBar() {
     <div style={{ backgroundColor: '#111', borderTop: '1px solid rgba(200,146,26,0.12)', borderBottom: '1px solid rgba(200,146,26,0.12)' }}>
       <div className="container-max px-6 sm:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4">
-          {stats.map(({ value, suffix, label }, i) => (
+          {stats.map(({ value, label }, i) => (
             <div
               key={label}
               className="py-8 flex flex-col items-center text-center"
@@ -20,11 +18,12 @@ export default function StatsBar() {
             >
               <span
                 style={{
-                  fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 4vw, 3rem)',
+                  fontFamily: 'var(--font-display)', fontSize: 'clamp(1.5rem, 3vw, 2.25rem)',
                   fontWeight: 600, color: 'var(--color-brand-gold)', lineHeight: 1,
+                  letterSpacing: value.length > 4 ? '0.04em' : '0',
                 }}
               >
-                <AnimatedCounter value={value} suffix={suffix} />
+                {value}
               </span>
               <span
                 className="mt-1"
